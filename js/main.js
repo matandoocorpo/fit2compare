@@ -349,7 +349,15 @@ function printPower(data, series) {
   let cadBuffer = [];
   let eleBuffer = [];
   let dataSetTitle = data.file_id.manufacturer;
-  let records = data.activity.sessions[0].laps[0].records;
+  let laps = data.activity.sessions[0].laps;
+  let records = [];
+  laps.forEach(lap => {
+    
+    var data = lap.records;
+    data.forEach(record => {  
+        records.push(record);
+    });
+  });
   records.forEach(record => {
     if (!now) {
       now = moment(record.timestamp);
