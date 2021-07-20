@@ -455,7 +455,7 @@ function createMap(geoData){
     Zoom: 5.5
   });
   
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+  L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
   var polyline = L.polyline(geoData, {color: 'red'}).addTo(map);
 
