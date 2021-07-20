@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"  crossorigin="anonymous"/>
     <link rel="stylesheet" href="./js/Chart.min.css">
     <style>
         .offset_field {
@@ -68,6 +69,23 @@
                 
                     <div id="accordianId" role="tablist" aria-multiselectable="true">
                         <div class="card">
+                            <div class="card-header" role="tab" id="section6HeaderId">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordianId" href="#section6ContentId" aria-expanded="true" aria-controls="section6ContentId">
+                             <i class="fa fa-map" aria-hidden="true"></i><span data-translate='mapa'> Map</span>
+                            </a>
+                            <button onclick='exportJPEG(6)' type='button' class='btn btn-outline-success btn-sm float-right'> <i class="fa fa-file-image-o" aria-hidden="true"></i> <span data-translate='exportar_imagen'>Export Image</span></button>
+                                </h5>
+                            </div>
+                            <div id="section6ContentId" class="collapse show" role="tabpanel" aria-labelledby="section6HeaderId">
+                                <div class="card-body">
+                                    <!-- mapa Leaflet -->
+                                    <div id='mapGraph' style='width:100% !important;height:300px !important;'></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
                             <div class="card-header" role="tab" id="section1HeaderId">
                                 <h5 class="mb-0">
                                     <a data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true" aria-controls="section1ContentId">
@@ -123,7 +141,7 @@
                                 <h5 class="mb-0">
                                     <a data-toggle="collapse" data-parent="#accordianId" href="#section5ContentId"
                                         aria-expanded="true" aria-controls="section5ContentId">
-                                        <i class="fa fa-map" aria-hidden="true"></i><span data-translate='elevacion'>Elevation</span>
+                                        <i class="fa fa-area-chart" aria-hidden="true"></i><span data-translate='elevacion'>Elevation</span>
                                     </a>
                                     <button onclick='exportJPG(4)' type='button'
                                         class='btn btn-outline-success btn-sm float-right'> <i
@@ -225,6 +243,7 @@
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script type='text/javascript' src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" crossorigin="anonymous"></script>
     <script type='text/javascript' src='./js/standalone.js'></script>
     <script type='text/javascript' src='./js/main.js'></script>
   

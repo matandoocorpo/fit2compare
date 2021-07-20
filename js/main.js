@@ -340,6 +340,7 @@ function printPower(data, series) {
   data = JSON.parse(data);
   var now;
   let powerData = [];
+  let geoData = [];
   let hrData = [];
   let cadData = [];
   let eleData=[];
@@ -348,6 +349,7 @@ function printPower(data, series) {
   let hrBuffer = [];
   let cadBuffer = [];
   let eleBuffer = [];
+  let geoBuffer = [];
   let dataSetTitle = data.file_id.manufacturer;
   let laps = data.activity.sessions[0].laps;
   let records = [];
@@ -367,6 +369,7 @@ function printPower(data, series) {
         hrBuffer.push(record.heart_rate);
         cadBuffer.push(record.cadence);
         eleBuffer.push(record.altitude*1000);
+        geoData.push([record.position_lat, record.position_long])
       } else {
         var power = calcMed(powerBuffer);
         var hr = calcMed(hrBuffer);
@@ -377,10 +380,12 @@ function printPower(data, series) {
         cadData.push({ x: new Date(now.format()).getTime(), y: cadence });
         eleData.push({ x: new Date(now.format()).getTime(), y: elevation });
         xlsData.push({tsmp:new Date(now.format()).getTime(), pwr:power, hr:hr, cad:cadence, elev:elevation});
+        //geoData.push(geoBuffer);
         powerBuffer = [];
         hrBuffer = [];
         cadBuffer = [];
         eleBuffer = [];
+        geoBuffer = [];
 
         now = moment(record.timestamp);
       }
@@ -438,6 +443,25 @@ function printPower(data, series) {
 
   chartEle.update();
   chartEle.render();
+
+  createMap(geoData);
+}
+
+function createMap(geoData){
+
+  console.log(geoData);
+  var map = L.map('mapGraph', {
+    center: [40.438, -3.819],
+    Zoom: 5.5
+  });
+  
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+
+  var polyline = L.polyline(geoData, {color: 'red'}).addTo(map);
+
+// zoom the map to the polyline
+map.fitBounds(polyline.getBounds());
+
 }
 
 function fillResume(data){
